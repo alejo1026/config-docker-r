@@ -58,8 +58,7 @@ services:
 
 networks:
   proxy_network:  # Simplified network configuration
-    name: nginx-proxy
-    external: true
+    name: bridge
 
 volumes:
   conf:
