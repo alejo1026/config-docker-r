@@ -50,7 +50,7 @@ services:
     environment:
       - VIRTUAL_HOST=docker.5th4.com
       - VIRTUAL_PORT=5001
-      - LETSENCRYPT_HOST=5th4.com
+      - LETSENCRYPT_HOST=docker.5th4.com
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5001"
