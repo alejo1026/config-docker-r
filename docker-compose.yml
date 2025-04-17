@@ -58,7 +58,7 @@ services:
 
 networks:
   proxy_network:  # Simplified network configuration
-    name: bridge
+    driver: bridge
 
 volumes:
   conf:
