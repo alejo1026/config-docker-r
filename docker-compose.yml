@@ -48,7 +48,7 @@ services:
       context: ../projects/MotorFinanceTracker
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=5th4.com
+      - VIRTUAL_HOST=docker.5th4.com
       - VIRTUAL_PORT=5001
       - LETSENCRYPT_HOST=5th4.com
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
