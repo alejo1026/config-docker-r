@@ -10,10 +10,9 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./nginx.conf:/etc/nginx/nginx.conf  
-    # networks:
-    #   proxy_network:
-    #     ipv4_address: 172.31.13.218
+    networks:
+      proxy_network:
+        ipv4_address: 172.18.0.10
     restart: always
 
   acme-companion:
@@ -21,13 +20,15 @@ services:
     container_name: nginx-proxy-acme
     environment:
       - DEFAULT_EMAIL=digitialmarket1810@proton.me
+    depends_on:
+      - nginx-proxy
     volumes_from:
       - nginx-proxy
     volumes:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    # networks:
-    #   - proxy_network
+    networks:
+      - proxy_network
     restart: always
 
   project1:
@@ -41,9 +42,9 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
-    # networks:
-    #   proxy_network:
-    #     ipv4_address: 172.31.13.219
+    networks:
+      proxy_network:
+        ipv4_address: 172.18.0.2
     restart: always
 
   project2:
@@ -57,21 +58,23 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5001"
-    # networks:
-    #   proxy_network:
-    #     ipv4_address: 172.31.13.220
+    ports:
+      - "5001:5001"
+    networks:
+      proxy_network:
+        ipv4_address: 172.18.0.4
     restart: always
-
-# networks:
-#   proxy_network:
-#     driver: bridge
-#     ipam:
-#       config:
-#         - subnet: 172.31.13.0/24
-#           gateway: 172.31.13.1
 
 volumes:
   certs:
   vhost:
   html:
   acme:
+
+networks:
+  proxy_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
