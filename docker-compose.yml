@@ -1,3 +1,5 @@
+version: "3"
+
 services:
   nginx-proxy:
     image: nginxproxy/nginx-proxy
@@ -10,8 +12,8 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    labels:
-      - "com.github.nginx-proxy.docker-gen"
+    networks:
+      - proxy-tier
     restart: always
 
   acme-companion:
@@ -25,6 +27,8 @@ services:
     volumes:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - proxy-tier
     restart: always
 
   project1:
@@ -38,6 +42,8 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
+    networks:
+      - proxy-tier
     restart: always
 
   project2:
@@ -51,6 +57,8 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5001"
+    networks:
+      - proxy-tier
     restart: always
 
 volumes:
@@ -59,3 +67,7 @@ volumes:
   html:
   certs:
   acme:
+
+networks:
+  proxy-tier:
+    driver: bridge
