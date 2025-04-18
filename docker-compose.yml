@@ -11,7 +11,8 @@ services:
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
-      - proxy-tier
+      proxy_network:
+        ipv4_address: 172.31.13.218
     restart: always
 
   acme-companion:
@@ -19,14 +20,13 @@ services:
     container_name: nginx-proxy-acme
     environment:
       - DEFAULT_EMAIL=digitialmarket1810@proton.me
-      - NGINX_PROXY_CONTAINER=nginx-proxy
     volumes_from:
       - nginx-proxy
     volumes:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - proxy-tier
+      - proxy_network
     restart: always
 
   project1:
@@ -41,7 +41,8 @@ services:
     expose:
       - "5000"
     networks:
-      - proxy-tier
+      proxy_network:
+        ipv4_address: 172.31.13.219
     restart: always
 
   project2:
@@ -56,16 +57,20 @@ services:
     expose:
       - "5001"
     networks:
-      - proxy-tier
+      proxy_network:
+        ipv4_address: 172.31.13.220
     restart: always
 
+networks:
+  proxy_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.13.0/24
+          gateway: 172.31.13.1
+
 volumes:
-  conf:
+  certs:
   vhost:
   html:
-  certs:
   acme:
-
-networks:
-  proxy-tier:
-    driver: bridge
