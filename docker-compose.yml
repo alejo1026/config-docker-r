@@ -51,8 +51,6 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5001"
-    ports:
-      - "5001:5001"
     restart: always
 
 volumes:
