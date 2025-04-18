@@ -10,6 +10,8 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      - "com.github.nginx-proxy.docker-gen"
     restart: always
 
   acme-companion:
@@ -17,6 +19,7 @@ services:
     container_name: nginx-proxy-acme
     environment:
       - DEFAULT_EMAIL=digitialmarket1810@proton.me
+      - NGINX_PROXY_CONTAINER=nginx-proxy
     volumes_from:
       - nginx-proxy
     volumes:
@@ -49,9 +52,7 @@ services:
     expose:
       - "5001"
     ports:
-      - "5001:5001"  # Añadido para depuración
-    labels:
-      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+      - "5001:5001"
     restart: always
 
 volumes:
