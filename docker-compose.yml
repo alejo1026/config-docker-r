@@ -10,9 +10,6 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      proxy_network:
-        ipv4_address: 172.18.0.10
     restart: always
 
   acme-companion:
@@ -20,15 +17,11 @@ services:
     container_name: nginx-proxy-acme
     environment:
       - DEFAULT_EMAIL=digitialmarket1810@proton.me
-    depends_on:
-      - nginx-proxy
     volumes_from:
       - nginx-proxy
     volumes:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - proxy_network
     restart: always
 
   project1:
@@ -37,14 +30,11 @@ services:
       dockerfile: Dockerfile
     environment:
       - VIRTUAL_HOST=docker.lostcanbefound.info
-      - VIRTUAL_PORT=5000
+      - VIRTUAL_PORT=5000 
       - LETSENCRYPT_HOST=docker.lostcanbefound.info
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
-    networks:
-      proxy_network:
-        ipv4_address: 172.18.0.2
     restart: always
 
   project2:
@@ -58,21 +48,11 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5001"
-    networks:
-      proxy_network:
-        ipv4_address: 172.18.0.4
     restart: always
 
 volumes:
-  certs:
+  conf:
   vhost:
   html:
+  certs:
   acme:
-
-networks:
-  proxy_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.18.0.0/16
-          gateway: 172.18.0.1
