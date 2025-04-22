@@ -29,39 +29,14 @@ services:
       context: ../projects/copy
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=docker.lostcanbefound.info
+      - VIRTUAL_HOST=docker2.lostcanbefound.info
       - VIRTUAL_PORT=5000 
-      - LETSENCRYPT_HOST=docker.lostcanbefound.info
+      - LETSENCRYPT_HOST=docker2.lostcanbefound.info
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
     restart: always
 
-  project2:
-    build:
-      context: ../projects/MotorFinanceTracker
-      dockerfile: Dockerfile
-    environment:
-      - VIRTUAL_HOST=docker.5th4.com
-      - VIRTUAL_PORT=5001
-      - LETSENCRYPT_HOST=docker.5th4.com
-      - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-    expose:
-      - "5001"
-    restart: always
-
-  project3:
-    build:
-      context: ../projects/GiftCardExplorer
-      dockerfile: Dockerfile
-    environment:
-      - VIRTUAL_HOST=tp979.com
-      - VIRTUAL_PORT=5002
-      - LETSENCRYPT_HOST=tp979.com
-      - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-    expose:
-      - "5002"
-    restart: always
 
 volumes:
   conf:
