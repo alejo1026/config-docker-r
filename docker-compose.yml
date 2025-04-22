@@ -55,9 +55,9 @@ services:
       context: ../projects/GiftCardExplorer
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=gifcards.tp979.com
+      - VIRTUAL_HOST=tp979.com
       - VIRTUAL_PORT=5002
-      - LETSENCRYPT_HOST=gifcards.tp979.com
+      - LETSENCRYPT_HOST=tp979.com
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5002"
