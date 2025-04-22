@@ -50,6 +50,19 @@ services:
       - "5001"
     restart: always
 
+  project3:
+    build:
+      context: ../projects/GiftCardExplorer
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=gifcards.tp979.com
+      - VIRTUAL_PORT=5002
+      - LETSENCRYPT_HOST=gifcards.tp979.com
+      - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
+    expose:
+      - "5002"
+    restart: always
+
 volumes:
   conf:
   vhost:
