@@ -29,9 +29,9 @@ services:
       context: ../projects/copy
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=slkur.top
+      - VIRTUAL_HOST=tp659.com
       - VIRTUAL_PORT=5000 
-      - LETSENCRYPT_HOST=slkur.top
+      - LETSENCRYPT_HOST=tp659.com
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
