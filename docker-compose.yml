@@ -29,13 +29,26 @@ services:
       context: ../projects/copy
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=cmoe.win
+      - VIRTUAL_HOST=somepeoplelie.info
       - VIRTUAL_PORT=5000 
-      - LETSENCRYPT_HOST=cmoe.win
+      - LETSENCRYPT_HOST=somepeoplelie.info
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
     restart: always
+
+  # project2:
+  #   build:
+  #     context: ../projects/copy
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - VIRTUAL_HOST=somepeoplelie.info
+  #     - VIRTUAL_PORT=5001 
+  #     - LETSENCRYPT_HOST=somepeoplelie.info
+  #     - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
+  #   expose:
+  #     - "5001"
+  #   restart: always
 
 
 volumes:
