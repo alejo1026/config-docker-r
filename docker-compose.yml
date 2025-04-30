@@ -101,6 +101,8 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
+    networks:
+      - net1
     restart: always
 
   nginx2:
