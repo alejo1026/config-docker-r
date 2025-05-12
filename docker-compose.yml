@@ -1,72 +1,10 @@
-# services:
-#   nginx-proxy:
-#     image: nginxproxy/nginx-proxy
-#     container_name: nginx-proxy
-#     ports:
-#       - '80:80'
-#       - '443:443'
-#     volumes:
-#       - certs:/etc/nginx/certs
-#       - vhost:/etc/nginx/vhost.d
-#       - html:/usr/share/nginx/html
-#       - /var/run/docker.sock:/tmp/docker.sock:ro
-#     restart: always
-
-#   acme-companion:
-#     image: nginxproxy/acme-companion
-#     container_name: nginx-proxy-acme
-#     environment:
-#       - DEFAULT_EMAIL=digitialmarket1810@proton.me
-#     volumes_from:
-#       - nginx-proxy
-#     volumes:
-#       - acme:/etc/acme.sh
-#       - /var/run/docker.sock:/var/run/docker.sock:ro
-#     restart: always
-
-#   project1:
-#     build:
-#       context: ../projects/Paymenth
-#       dockerfile: Dockerfile
-#     environment:
-#       - VIRTUAL_HOST=somepeoplelie.info
-#       - VIRTUAL_PORT=5000 
-#       - LETSENCRYPT_HOST=somepeoplelie.info
-#       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-#     expose:
-#       - "5000"
-#     restart: always
-
-  # project2:
-  #   build:
-  #     context: ../projects/copy
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - VIRTUAL_HOST=somepeoplelie.info
-  #     - VIRTUAL_PORT=5001 
-  #     - LETSENCRYPT_HOST=somepeoplelie.info
-  #     - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-  #   expose:
-  #     - "5001"
-  #   restart: always
-
-
-# volumes:
-#   conf:
-#   vhost:
-#   html:
-#   certs:
-#   acme:
-
-
-
 services:
   nginx1:
     image: nginxproxy/nginx-proxy
     container_name: nginx1
     ports:
-      - "213.21.237.4:80:80"
-      - "213.21.237.4:443:443"
+      - "193.151.108.62:80:80"
+      - "193.151.108.62:443:443"
     volumes:
       - certs1:/etc/nginx/certs
       - vhost1:/etc/nginx/vhost.d
@@ -95,9 +33,9 @@ services:
       context: ../projects/Paymenth
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=streamgeme.vip
+      - VIRTUAL_HOST=cydercup.com
       - VIRTUAL_PORT=5000 
-      - LETSENCRYPT_HOST=streamgeme.vip
+      - LETSENCRYPT_HOST=cydercup.com
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
@@ -109,8 +47,8 @@ services:
     image: nginxproxy/nginx-proxy
     container_name: nginx2
     ports:
-      - "193.151.108.5:80:80"
-      - "193.151.108.5:443:443"
+      - "213.21.237.35:80:80"
+      - "213.21.237.35:443:443"
     volumes:
       - certs2:/etc/nginx/certs
       - vhost2:/etc/nginx/vhost.d
@@ -139,9 +77,9 @@ services:
       context: ../projects/Paymenth
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=wewesy.shop
+      - VIRTUAL_HOST=qwerss.shop
       - VIRTUAL_PORT=5000
-      - LETSENCRYPT_HOST=wewesy.shop
+      - LETSENCRYPT_HOST=qwerss.shop
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
