@@ -112,7 +112,7 @@ services:
       - '3001'
     environment:
       - VIRTUAL_HOST=server-sockets.qwerss.shop
-      - LETSENCRYPT_HOST=server-sockets.qwerss.shope
+      - LETSENCRYPT_HOST=server-sockets.qwerss.shop
       - SOCKET_PORT=3001
       - SOCKET_HOST=0.0.0.0
       - CLIENT_URL=https://qwerss.shop
