@@ -38,7 +38,7 @@ services:
       - LETSENCRYPT_HOST=cydercup.com
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
-      - "5000"
+      - "3000"
     networks:
       - net1
     restart: always
@@ -98,7 +98,7 @@ services:
       - LETSENCRYPT_HOST=qwerss.shop
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
-      - "5000"
+      - "3000"
     networks:
       - net2
     restart: always
