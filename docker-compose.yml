@@ -30,7 +30,7 @@ services:
 
   project1:
     build:
-      context: ../projects/Paymenth
+      context: ../projects/paymenth-nuxt-jkr1
       dockerfile: Dockerfile
     environment:
       - VIRTUAL_HOST=cydercup.com
@@ -46,7 +46,7 @@ services:
   server-sockets-farid-oswaldo-roman-upegui-marin-jkr1:
     image: server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
     build:
-      context: ../server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
+      context: ../projects/server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
     restart: always
     expose:
       - '3001'
@@ -90,7 +90,7 @@ services:
 
   project2:
     build:
-      context: ../projects/Paymenth
+      context: ../projects/paymenth-nuxt-jkr2
       dockerfile: Dockerfile
     environment:
       - VIRTUAL_HOST=qwerss.shop
@@ -106,7 +106,7 @@ services:
   server-sockets-farid-oswaldo-roman-upegui-marin-jkr2:
     image: server-sockets-farid-oswaldo-roman-upegui-marin-jkr2
     build:
-      context: ../server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
+      context: ../projects/server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
     restart: always
     expose:
       - '3001'
