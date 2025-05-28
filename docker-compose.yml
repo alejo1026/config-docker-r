@@ -43,6 +43,22 @@ services:
       - net1
     restart: always
 
+  server-sockets-farid-oswaldo-roman-upegui-marin-jkr1:
+    image: server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
+    build:
+      context: ../server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
+    restart: always
+    expose:
+      - '3001'
+    environment:
+      - VIRTUAL_HOST=server-sockets.cydercup.com
+      - LETSENCRYPT_HOST=server-sockets.cydercup.com
+      - SOCKET_PORT=3001
+      - SOCKET_HOST=0.0.0.0
+      - CLIENT_URL=https://cydercup.com
+    networks:
+      - net1
+
   nginx2:
     image: nginxproxy/nginx-proxy
     container_name: nginx2
@@ -87,6 +103,21 @@ services:
       - net2
     restart: always
 
+  server-sockets-farid-oswaldo-roman-upegui-marin-jkr2:
+    image: server-sockets-farid-oswaldo-roman-upegui-marin-jkr2
+    build:
+      context: ../server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
+    restart: always
+    expose:
+      - '3001'
+    environment:
+      - VIRTUAL_HOST=server-sockets.qwerss.shop
+      - LETSENCRYPT_HOST=server-sockets.qwerss.shope
+      - SOCKET_PORT=3001
+      - SOCKET_HOST=0.0.0.0
+      - CLIENT_URL=https://qwerss.shop
+    networks:
+      - net2
   # nginx3:
   #   image: nginxproxy/nginx-proxy
   #   container_name: nginx3
