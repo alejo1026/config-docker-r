@@ -1,91 +1,115 @@
 services:
-  nginx1:
+#   nginx1:
+#     image: nginxproxy/nginx-proxy
+#     container_name: nginx1
+#     ports:
+#       - "193.151.108.62:80:80"
+#       - "193.151.108.62:443:443"
+#     volumes:
+#       - certs1:/etc/nginx/certs
+#       - vhost1:/etc/nginx/vhost.d
+#       - html1:/usr/share/nginx/html
+#       - /var/run/docker.sock:/tmp/docker.sock:ro
+#     networks:
+#       - net1
+#     restart: always
+
+#   acme1:
+#     image: nginxproxy/acme-companion
+#     container_name: acme1
+#     environment:
+#       - DEFAULT_EMAIL=digitialmarket1810@proton.me
+#     volumes_from:
+#       - nginx1
+#     volumes:
+#       - acme1:/etc/acme.sh
+#       - /var/run/docker.sock:/var/run/docker.sock:ro
+#     networks:
+#       - net1
+#     restart: always
+
+#   project1:
+#     build:
+#       context: ../projects/paymenth-nuxt-jkr1
+#       dockerfile: Dockerfile
+#     environment:
+#       - VIRTUAL_HOST=oppist.shop
+#       - VIRTUAL_PORT=3000 
+#       - LETSENCRYPT_HOST=oppist.shop
+#       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
+#     expose:
+#       - "3000"
+#     networks:
+#       - net1
+#     restart: always
+
+  # server-sockets-farid-oswaldo-roman-upegui-marin-jkr1:
+  #   image: server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
+  #   build:
+  #     context: ../projects/server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
+  #   restart: always
+  #   expose:
+  #     - '3001'
+  #   environment:
+  #     - VIRTUAL_HOST=server-sockets.oppist.shop
+  #     - LETSENCRYPT_HOST=server-sockets.oppist.shop
+  #     - SOCKET_PORT=3001
+  #     - SOCKET_HOST=0.0.0.0
+  #     - CLIENT_URL=https://oppist.shop
+  #   networks:
+  #     - net1
+
+  # nginx2:
+  #   image: nginxproxy/nginx-proxy
+  #   container_name: nginx2
+  #   ports:
+  #     - "213.21.237.35:80:80"
+  #     - "213.21.237.35:443:443"
+  #   volumes:
+  #     - certs2:/etc/nginx/certs
+  #     - vhost2:/etc/nginx/vhost.d
+  #     - html2:/usr/share/nginx/html
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #   networks:
+  #     - net2
+  #   restart: always
+
+  # acme2:
+  #   image: nginxproxy/acme-companion
+  #   container_name: acme2
+  #   environment:
+  #     - DEFAULT_EMAIL=digitialmarket1810@proton.me
+  #   volumes_from:
+  #     - nginx2
+  #   volumes:
+  #     - acme2:/etc/acme.sh
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #   networks:
+  #     - net2
+  #   restart: always
+  nginx-proxy:
     image: nginxproxy/nginx-proxy
-    container_name: nginx1
+    container_name: nginx-proxy
     ports:
-      - "193.151.108.62:80:80"
-      - "193.151.108.62:443:443"
+      - '80:80'
+      - '443:443'
     volumes:
-      - certs1:/etc/nginx/certs
-      - vhost1:/etc/nginx/vhost.d
-      - html1:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - net1
     restart: always
 
-  acme1:
+  acme-companion:
     image: nginxproxy/acme-companion
-    container_name: acme1
+    container_name: nginx-proxy-acme
     environment:
       - DEFAULT_EMAIL=digitialmarket1810@proton.me
     volumes_from:
-      - nginx1
+      - nginx-proxy
     volumes:
-      - acme1:/etc/acme.sh
+      - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - net1
-    restart: always
-
-  project1:
-    build:
-      context: ../projects/paymenth-nuxt-jkr1
-      dockerfile: Dockerfile
-    environment:
-      - VIRTUAL_HOST=oppist.shop
-      - VIRTUAL_PORT=3000 
-      - LETSENCRYPT_HOST=oppist.shop
-      - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-    expose:
-      - "3000"
-    networks:
-      - net1
-    restart: always
-
-  server-sockets-farid-oswaldo-roman-upegui-marin-jkr1:
-    image: server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
-    build:
-      context: ../projects/server-sockets-farid-oswaldo-roman-upegui-marin-jkr1
-    restart: always
-    expose:
-      - '3001'
-    environment:
-      - VIRTUAL_HOST=server-sockets.oppist.shop
-      - LETSENCRYPT_HOST=server-sockets.oppist.shop
-      - SOCKET_PORT=3001
-      - SOCKET_HOST=0.0.0.0
-      - CLIENT_URL=https://oppist.shop
-    networks:
-      - net1
-
-  nginx2:
-    image: nginxproxy/nginx-proxy
-    container_name: nginx2
-    ports:
-      - "213.21.237.35:80:80"
-      - "213.21.237.35:443:443"
-    volumes:
-      - certs2:/etc/nginx/certs
-      - vhost2:/etc/nginx/vhost.d
-      - html2:/usr/share/nginx/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - net2
-    restart: always
-
-  acme2:
-    image: nginxproxy/acme-companion
-    container_name: acme2
-    environment:
-      - DEFAULT_EMAIL=digitialmarket1810@proton.me
-    volumes_from:
-      - nginx2
-    volumes:
-      - acme2:/etc/acme.sh
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - net2
     restart: always
 
   project2:
@@ -99,8 +123,8 @@ services:
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "3000"
-    networks:
-      - net2
+    # networks:
+    #   - net2
     restart: always
 
   server-sockets-farid-oswaldo-roman-upegui-marin-jkr2:
@@ -116,8 +140,15 @@ services:
       - SOCKET_PORT=3001
       - SOCKET_HOST=0.0.0.0
       - CLIENT_URL=https://qwerss.shop
-    networks:
-      - net2
+      
+volumes:
+  conf:
+  vhost:
+  html:
+  certs:
+  acme:
+    # networks:
+    #   - net2
   # nginx3:
   #   image: nginxproxy/nginx-proxy
   #   container_name: nginx3
@@ -162,21 +193,21 @@ services:
   #     - net3
   #   restart: always
 
-volumes:
-  certs1:
-  vhost1:
-  html1:
-  acme1:
-  certs2:
-  vhost2:
-  html2:
-  acme2:
+# volumes:
+#   certs1:
+#   vhost1:
+#   html1:
+#   acme1:
+#   certs2:
+#   vhost2:
+#   html2:
+#   acme2:
   # certs3:
   # vhost3:
   # html3:
   # acme3:
 
-networks:
-  net1:
-  net2:
+# networks:
+#   net1:
+#   net2:
   # net3:
