@@ -117,9 +117,9 @@ services:
       context: ../projects/paymenth-nuxt-jkr2
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=qwerss.shop
+      - VIRTUAL_HOST=oppist.shop
       - VIRTUAL_PORT=3000
-      - LETSENCRYPT_HOST=qwerss.shop
+      - LETSENCRYPT_HOST=oppist.shop
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "3000"
@@ -135,11 +135,11 @@ services:
     expose:
       - '3001'
     environment:
-      - VIRTUAL_HOST=server-sockets.qwerss.shop
-      - LETSENCRYPT_HOST=server-sockets.qwerss.shop
+      - VIRTUAL_HOST=server-sockets.oppist.shop
+      - LETSENCRYPT_HOST=server-sockets.oppist.shop
       - SOCKET_PORT=3001
       - SOCKET_HOST=0.0.0.0
-      - CLIENT_URL=https://qwerss.shop
+      - CLIENT_URL=https://oppist.shop
       
 volumes:
   conf:
