@@ -3,8 +3,8 @@ services:
     image: nginxproxy/nginx-proxy
     container_name: nginx1
     ports:
-      - "213.21.237.4:80:80"
-      - "213.21.237.4:443:443"
+      - "193.151.108.62:80:80"
+      - "193.151.108.62:443:443"
     volumes:
       - certs1:/etc/nginx/certs
       - vhost1:/etc/nginx/vhost.d
@@ -64,8 +64,8 @@ services:
     image: nginxproxy/nginx-proxy
     container_name: nginx2
     ports:
-      - "193.151.108.5:80:80"
-      - "193.151.108.5:443:443"
+      - "213.21.237.35:80:80"
+      - "213.21.237.35:443:443"
     volumes:
       - certs2:/etc/nginx/certs
       - vhost2:/etc/nginx/vhost.d
