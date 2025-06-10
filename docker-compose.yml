@@ -1,65 +1,3 @@
-# services:
-#   nginx-proxy:
-#     image: nginxproxy/nginx-proxy
-#     container_name: nginx-proxy
-#     ports:
-#       - '80:80'
-#       - '443:443'
-#     volumes:
-#       - certs:/etc/nginx/certs
-#       - vhost:/etc/nginx/vhost.d
-#       - html:/usr/share/nginx/html
-#       - /var/run/docker.sock:/tmp/docker.sock:ro
-#     restart: always
-
-#   acme-companion:
-#     image: nginxproxy/acme-companion
-#     container_name: nginx-proxy-acme
-#     environment:
-#       - DEFAULT_EMAIL=digitialmarket1810@proton.me
-#     volumes_from:
-#       - nginx-proxy
-#     volumes:
-#       - acme:/etc/acme.sh
-#       - /var/run/docker.sock:/var/run/docker.sock:ro
-#     restart: always
-
-#   project1:
-#     build:
-#       context: ../projects/Paymenth
-#       dockerfile: Dockerfile
-#     environment:
-#       - VIRTUAL_HOST=somepeoplelie.info
-#       - VIRTUAL_PORT=5000 
-#       - LETSENCRYPT_HOST=somepeoplelie.info
-#       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-#     expose:
-#       - "5000"
-#     restart: always
-
-  # project2:
-  #   build:
-  #     context: ../projects/copy
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - VIRTUAL_HOST=somepeoplelie.info
-  #     - VIRTUAL_PORT=5001 
-  #     - LETSENCRYPT_HOST=somepeoplelie.info
-  #     - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-  #   expose:
-  #     - "5001"
-  #   restart: always
-
-
-# volumes:
-#   conf:
-#   vhost:
-#   html:
-#   certs:
-#   acme:
-
-
-
 services:
   nginx1:
     image: nginxproxy/nginx-proxy
@@ -92,15 +30,31 @@ services:
 
   project1:
     build:
-      context: ../projects/Paymenth
+      context: ../projects/Paymenth1
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=streamgeme.vip
+      - VIRTUAL_HOST=forumonline.click
       - VIRTUAL_PORT=5000 
-      - LETSENCRYPT_HOST=streamgeme.vip
+      - LETSENCRYPT_HOST=forumonline.click
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
       - "5000"
+    networks:
+      - net1
+    restart: always
+  
+  server-socket-project1:
+    build:
+      context: ../projects/server-socket-Paymenth1
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=server-sockets.forumonline.click
+      - LETSENCRYPT_HOST=server-sockets.forumonline.click
+      - SOCKET_PORT=5001
+      - SOCKET_HOST=0.0.0.0
+      - CLIENT_URL=https://forumonline.click
+    expose:
+      - "5001"
     networks:
       - net1
     restart: always
@@ -136,62 +90,34 @@ services:
 
   project2:
     build:
-      context: ../projects/Paymenth
+      context: ../projects/Paymenth2
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=wewesy.shop
-      - VIRTUAL_PORT=5000
-      - LETSENCRYPT_HOST=wewesy.shop
+      - VIRTUAL_HOST=forumparati.forum
+      - VIRTUAL_PORT=5002
+      - LETSENCRYPT_HOST=forumparati.forum
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
     expose:
-      - "5000"
+      - "5002"
     networks:
       - net2
     restart: always
 
-  # nginx3:
-  #   image: nginxproxy/nginx-proxy
-  #   container_name: nginx3
-  #   ports:
-  #     - "213.21.237.72:80:80"
-  #     - "213.21.237.72:443:443"
-  #   volumes:
-  #     - certs3:/etc/nginx/certs
-  #     - vhost3:/etc/nginx/vhost.d
-  #     - html3:/usr/share/nginx/html
-  #     - /var/run/docker.sock:/tmp/docker.sock:ro
-  #   networks:
-  #     - net3
-  #   restart: always
-
-  # acme3:
-  #   image: nginxproxy/acme-companion
-  #   container_name: acme3
-  #   environment:
-  #     - DEFAULT_EMAIL=tu@email.com
-  #   volumes_from:
-  #     - nginx3
-  #   volumes:
-  #     - acme3:/etc/acme.sh
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #   networks:
-  #     - net3
-  #   restart: always
-
-  # project3:
-  #   build:
-  #     context: ../projects/Paymenth
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - VIRTUAL_HOST=dominio3.com
-  #     - VIRTUAL_PORT=5000
-  #     - LETSENCRYPT_HOST=dominio3.com
-  #     - LETSENCRYPT_EMAIL=tu@email.com
-  #   expose:
-  #     - "5000"
-  #   networks:
-  #     - net3
-  #   restart: always
+  server-socket-project2:
+    build:
+      context: ../projects/server-socket-Paymenth2
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=server-sockets.forumparati.forum
+      - LETSENCRYPT_HOST=server-sockets.forumparati.forum
+      - SOCKET_PORT=5003
+      - SOCKET_HOST=0.0.0.0
+      - CLIENT_URL=https://forumparati.forum
+    expose:
+      - "5003"
+    networks:
+      - net2
+    restart: always
 
 volumes:
   certs1:
@@ -202,12 +128,7 @@ volumes:
   vhost2:
   html2:
   acme2:
-  # certs3:
-  # vhost3:
-  # html3:
-  # acme3:
 
 networks:
   net1:
   net2:
-  # net3:
