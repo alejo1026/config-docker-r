@@ -63,80 +63,80 @@ services:
       - net1
     restart: always
 
-  # nginx2:
-  #   image: nginxproxy/nginx-proxy
-  #   container_name: nginx2
-  #   ports:
-  #     - "213.21.237.35:80:80"
-  #     - "213.21.237.35:443:443"
-  #   volumes:
-  #     - certs2:/etc/nginx/certs
-  #     - vhost2:/etc/nginx/vhost.d
-  #     - html2:/usr/share/nginx/html
-  #     - /var/run/docker.sock:/tmp/docker.sock:ro
-  #   networks:
-  #     - net2
-  #   restart: always
+  nginx2:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx2
+    ports:
+      - "213.21.237.35:80:80"
+      - "213.21.237.35:443:443"
+    volumes:
+      - certs2:/etc/nginx/certs
+      - vhost2:/etc/nginx/vhost.d
+      - html2:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - net2
+    restart: always
 
-  # acme2:
-  #   image: nginxproxy/acme-companion
-  #   container_name: acme2
-  #   environment:
-  #     - DEFAULT_EMAIL=digitialmarket1810@proton.me
-  #   volumes_from:
-  #     - nginx2
-  #   volumes:
-  #     - acme2:/etc/acme.sh
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #   networks:
-  #     - net2
-  #   restart: always
+  acme2:
+    image: nginxproxy/acme-companion
+    container_name: acme2
+    environment:
+      - DEFAULT_EMAIL=digitialmarket1810@proton.me
+    volumes_from:
+      - nginx2
+    volumes:
+      - acme2:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - net2
+    restart: always
 
-  # project2:
-  #   build:
-  #     context: ../projects/Paymenth1
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - VIRTUAL_HOST=enlineaforum.forum
-  #     - VIRTUAL_PORT=5002
-  #     - LETSENCRYPT_HOST=enlineaforum.forum
-  #     - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
-  #     - PORT=5002
-  #     - SOCKET_URL=https://server-sockets.enlineaforum.forum
-  #     - CLIENT_URL=https://enlineaforum.forum
-  #   expose:
-  #     - "5002"
-  #   networks:
-  #     - net2
-  #   restart: always
+  project2:
+    build:
+      context: ../projects/Paymenth1
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=enlineaforum.forum
+      - VIRTUAL_PORT=5002
+      - LETSENCRYPT_HOST=enlineaforum.forum
+      - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
+      - PORT=5002
+      - SOCKET_URL=https://server-sockets.enlineaforum.forum
+      - CLIENT_URL=https://enlineaforum.forum
+    expose:
+      - "5002"
+    networks:
+      - net2
+    restart: always
 
-  # server-socket-project2:
-  #   build:
-  #     context: ../projects/server-socket-Paymenth1
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - VIRTUAL_HOST=server-sockets.enlineaforum.forum
-  #     - LETSENCRYPT_HOST=server-sockets.enlineaforum.forum
-  #     - SOCKET_PORT=5003
-  #     - SOCKET_HOST=0.0.0.0
-  #     - CLIENT_URL=https://enlineaforum.forum
-  #     - DB_HOST=mongodb+srv://alejcartoon1333:NyCK7xO1QrAlYnVc@farid-orlando-roman-upe.5yptxhf.mongodb.net/forum?retryWrites=true&w=majority&appName=farid-orlando-roman-upegui-marin
-  #   expose:
-  #     - "5003"
-  #   networks:
-  #     - net2
-  #   restart: always
+  server-socket-project2:
+    build:
+      context: ../projects/server-socket-Paymenth1
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=server-sockets.enlineaforum.forum
+      - LETSENCRYPT_HOST=server-sockets.enlineaforum.forum
+      - SOCKET_PORT=5003
+      - SOCKET_HOST=0.0.0.0
+      - CLIENT_URL=https://enlineaforum.forum
+      - DB_HOST=mongodb+srv://alejcartoon1333:NyCK7xO1QrAlYnVc@farid-orlando-roman-upe.5yptxhf.mongodb.net/forum?retryWrites=true&w=majority&appName=farid-orlando-roman-upegui-marin
+    expose:
+      - "5003"
+    networks:
+      - net2
+    restart: always
 
 volumes:
   certs1:
   vhost1:
   html1:
   acme1:
-  # certs2:
-  # vhost2:
-  # html2:
-  # acme2:
+  certs2:
+  vhost2:
+  html2:
+  acme2:
 
 networks:
   net1:
-  # net2:
+  net2:
