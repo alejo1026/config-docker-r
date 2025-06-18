@@ -33,13 +33,13 @@ services:
       context: ../projects/Paymenth1
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=forumonline.click
+      - VIRTUAL_HOST=forumteconecta.forum
       - VIRTUAL_PORT=5000 
-      - LETSENCRYPT_HOST=forumonline.click
+      - LETSENCRYPT_HOST=forumteconecta.forum
       - LETSENCRYPT_EMAIL=digitialmarket1810@proton.me
       - PORT=5000
-      - SOCKET_URL=https://server-sockets.forumonline.click
-      - CLIENT_URL=https://forumonline.click
+      - SOCKET_URL=https://server-sockets.forumteconecta.forum
+      - CLIENT_URL=https://forumteconecta.forum
     expose:
       - "5000"
     networks:
@@ -51,11 +51,11 @@ services:
       context: ../projects/server-socket-Paymenth1
       dockerfile: Dockerfile
     environment:
-      - VIRTUAL_HOST=server-sockets.forumonline.click
-      - LETSENCRYPT_HOST=server-sockets.forumonline.click
+      - VIRTUAL_HOST=server-sockets.forumteconecta.forum
+      - LETSENCRYPT_HOST=server-sockets.forumteconecta.forum
       - SOCKET_PORT=5001
       - SOCKET_HOST=0.0.0.0
-      - CLIENT_URL=https://forumonline.click
+      - CLIENT_URL=https://forumteconecta.forum
       - DB_HOST=mongodb+srv://alejcartoon1333:NyCK7xO1QrAlYnVc@farid-orlando-roman-upe.5yptxhf.mongodb.net/forum?retryWrites=true&w=majority&appName=farid-orlando-roman-upegui-marin
     expose:
       - "5001"
@@ -119,7 +119,7 @@ services:
       - LETSENCRYPT_HOST=server-sockets.enlineaforum.forum
       - SOCKET_PORT=5003
       - SOCKET_HOST=0.0.0.0
-      - CLIENT_URL=https://forumparati.forum
+      - CLIENT_URL=https://enlineaforum.forum
       - DB_HOST=mongodb+srv://alejcartoon1333:NyCK7xO1QrAlYnVc@farid-orlando-roman-upe.5yptxhf.mongodb.net/forum?retryWrites=true&w=majority&appName=farid-orlando-roman-upegui-marin
     expose:
       - "5003"
